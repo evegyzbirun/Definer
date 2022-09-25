@@ -59,7 +59,23 @@ end
 
 post('/words/:id/definitions') do
   @word = Word.find(params[:id].to_i())
-  definition = Definition.new(params[:definition_word_input], @word.id, nil)
+  definition = Definition.new(params[:definitioninput], @word.id, nil)
   definition.save()
+  erb(:word)
+end
+
+patch('/words/:id/definitions/:definition_id') do
+  @word = Word.find(params[:id].to_i())
+  if params[:definition_input] != ""
+    definition = Definition.find(params[:definition_id].to_i())
+    definition.update(params[:definition_input], @word.id)
+  end
+  erb(:word)
+end
+
+delete('/words/:id/definitions/:definition_id') do
+  definition = Definition.find(params[:definition_id].to_i())
+  definition.delete
+  @word = Word.find(params[:id].to_i())
   erb(:word)
 end

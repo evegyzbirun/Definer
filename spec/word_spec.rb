@@ -5,8 +5,6 @@ describe '#Word' do
   
   before(:each) do
     Word.clear()
-    # word1 = Word.new("song", nil)
-    # word2 = Word.new("world", nil)
   end
   describe('.all') do
     it("if there is no words returns an empty array") do
