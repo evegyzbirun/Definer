@@ -23,4 +23,14 @@ describe '#Word' do
     expect(Word.all).to(eq([word1, word2]))
    end
   end
+
+  describe('#==') do
+    it('compare two words if they have same attributes') do
+      word1 = Word.new("song", nil)
+      word2 = Word.new("song", nil)
+      expect(word1).to(eq(word2))
+    end
+  end
+
+  describe
 end
