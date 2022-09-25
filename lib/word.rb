@@ -26,6 +26,10 @@ class Word
     @@total_rows = 0
   end
 
+  def self.find(id)
+    @@words[id]
+  end
+
   def update(word_input)
     self.word_input = word_input
     @@words[self.id] = Word.new(self.word_input, self.id)
@@ -35,5 +39,7 @@ class Word
     @@words.delete(self.id)
   end
 
-
+  def definitions
+    Song.find_by_word(self.id)
+  end
 end
