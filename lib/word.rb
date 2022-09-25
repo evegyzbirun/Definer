@@ -9,12 +9,12 @@ class Word
     @id = id || @@total_rows += 1
   end
 
-  def self.all
-    @@word_input.value().sort {|a, b| a.word_input.dowcase <=> b.word_input.dowcase}
-  end
+   def self.all
+     @@words.values().sort { |a, b| a.word_input.downcase <=> b.word_input.downcase }
+   end
 
   def save 
-    @@word_input[self.id] = Word.new(self.word_input, self.id)
+    @@words[self.id] = Word.new(self.word_input, self.id)
   end
 
   def ==(word_to_compare)
@@ -22,9 +22,18 @@ class Word
   end
 
   def self.clear
-    @@word_input = {}
+    @@words = {}
     @@total_rows = 0
   end
 
-  def 
+  def update(word_input)
+    self.word_input = word_input
+    @@words[self.id] = Word.new(self.word_input, self.id)
+  end
+
+  def delete()
+    @@words.delete(self.id)
+  end
+
+
 end
