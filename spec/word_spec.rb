@@ -25,12 +25,21 @@ describe '#Word' do
   end
 
   describe('#==') do
-    it('compare two words if they have same attributes') do
+    it("compare two words if they have same attributes") do
       word1 = Word.new("song", nil)
       word2 = Word.new("song", nil)
       expect(word1).to(eq(word2))
     end
   end
 
-  describe
+  describe('.clear') do
+    it("clears all words") do
+    word1 = Word.new("song", nil)
+    word1 = save()
+    word2 = Word.new("world", nil)
+    word2 = save()
+    Word.clear()
+    expect(Word.all).to(eq([]))
+    end
+  end
 end
