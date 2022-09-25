@@ -44,11 +44,22 @@ describe '#Word' do
   end
 
   describe('#update') do
-    it("updates an word by id") do
+    it("updates a word by id") do
       word1 = Word.new("song", nil)
       word1 = save()
       word1.update("nice song")
       expect(Word.word1).to(eq("nice song"))
     end
+  end
+
+  describe('#delete') do
+    it("deletes a word by id") do
+      word1 = Word.new("song", nil)
+      word1 = save()
+      word2 = Word.new("world", nil)
+      word2 = save()
+      word1.delete()
+      expect(Word.all).to(eq([word2]))
+    end 
   end
 end
