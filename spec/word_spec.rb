@@ -42,4 +42,13 @@ describe '#Word' do
     expect(Word.all).to(eq([]))
     end
   end
+
+  describe('#update') do
+    it("updates an word by id") do
+      word1 = Word.new("song", nil)
+      word1 = save()
+      word1.update("nice song")
+      expect(Word.word1).to(eq("nice song"))
+    end
+  end
 end
