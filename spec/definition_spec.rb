@@ -42,5 +42,53 @@ describe('#==') do
     end
   end
 
+  describe('.find') do
+    it("finds a definitioin by id") do
+      definition = Definition.new("a sport competition", @word.id, nil)
+      definition.save()
+      definition2 = Definition.new("play on computer", @word.id, nil)
+      definition2.save()
+      expect(Definition.find(definitioin.id)).to(eq(definitioin))
+    end
+  end
 
+  describe('#update') do
+    it("updates a definitioin by id") do
+      definition = Definition.new("a sport competition", @word.id, nil)
+      definition.save()
+      definitioin.update("play on computer", @album.id)
+      expect(definitioin.name).to(eq("play on computer"))
+    end
+  end
+
+  describe('#delete') do
+  it("deletes a definitioin by id") do
+      definition = Definition.new("a sport competition", @word.id, nil)
+      definition.save()
+      definition2 = Definition.new("play on computer", @word.id, nil)
+      definition2.save()
+      definitioin.delete()
+    expect(Definition.all).to(eq([definition2]))
+  end
+end
+
+describe('.find_by_word') do
+  it("finds definition for a word") do
+      word2 = Word.new("Blue", nil)
+      word2.save()
+      definition = Definition.new("a sport competition", @word.id, nil)
+      definition.save()
+      definition2 = Definition.new("color of sky", @word.id, nil)
+      definition2.save()
+    expect(Definition.find_by_word(word2.id)).to(eq([definition2]))
+  end
+end
+
+describe('#word') do
+  it("finds the word a definition belongs to") do
+    definition = Definition.new("a sport competition", @word.id, nil)
+    definition.save()
+    expect(definition.word()).to(eq(@word))
+  end
+end
 end
