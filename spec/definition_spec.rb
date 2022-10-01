@@ -25,8 +25,8 @@ end
 
 describe('#==') do
     it("is one definition of a word is the same as another definition of the same word") do
-      definition = Song.new("a sport competition", @word.id, nil)
-      definition2 = Song.new("a sport competition", @word.id, nil)
+      definition = Definition.new("a sport competition", @word.id, nil)
+      definition2 = Definition.new("a sport competition", @word.id, nil)
       expect(definition).to(eq(definition2))
     end
   end
@@ -48,7 +48,7 @@ describe('#==') do
       definition.save()
       definition2 = Definition.new("play on computer", @word.id, nil)
       definition2.save()
-      expect(Definition.find(definitioin.id)).to(eq(definitioin))
+      expect(Definition.find(definition2.id)).to(eq(definition2))
     end
   end
 
@@ -56,31 +56,32 @@ describe('#==') do
     it("updates a definitioin by id") do
       definition = Definition.new("a sport competition", @word.id, nil)
       definition.save()
-      definitioin.update("play on computer", @album.id)
-      expect(definitioin.name).to(eq("play on computer"))
+      definition.update("play on computer", @word.id)
+      expect(definition.name).to(eq("play on computer"))
     end
   end
 
   describe('#delete') do
-  it("deletes a definitioin by id") do
+  it("deletes a definition by id") do
       definition = Definition.new("a sport competition", @word.id, nil)
       definition.save()
       definition2 = Definition.new("play on computer", @word.id, nil)
       definition2.save()
-      definitioin.delete()
+      definition.delete()
     expect(Definition.all).to(eq([definition2]))
   end
 end
 
 describe('.find_by_word') do
   it("finds definition for a word") do
-      word2 = Word.new("Blue", nil)
-      word2.save()
-      definition = Definition.new("a sport competition", @word.id, nil)
-      definition.save()
+      word1 = Word.new("Blue", nil)
+      word1.save()
+      definition1 = Definition.new("a sport competition", word1.id, nil)
+      definition1.save()
       definition2 = Definition.new("color of sky", @word.id, nil)
       definition2.save()
-    expect(Definition.find_by_word(word2.id)).to(eq([definition2]))
+
+      expect(Definition.find_by_word(word1.id)).to(eq([definition1]))
   end
 end
 

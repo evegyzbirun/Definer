@@ -40,6 +40,6 @@ class Word
   end
 
   def definitions
-    Song.find_by_word(self.id)
+    Definition.find_by_word(self.id)
   end
 end
