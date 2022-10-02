@@ -1,12 +1,15 @@
-<h2>Definition: <%= @definition.name %></h2>
-<h3>Word: <%= @definition.word.word_input %></h3>
+<h2>Definition: <%= @definition.name() %></h2>
+<h3>Word: <%= @definition.word.word_input() %></h3>
 
-<form action="/words/<%= @word.id %>/definitions" method="post">
+<form action="/words/<%= @definition.word.id %>/definitions/ <%= @definition.id %>" method="post">
+
   <div class="form-group">
-    <label for="word_name">Song name</label>
-    <input id="word_name" name="word_name" class="form-control" type="text">
+
+    <label for="definition_name">Definition name</label>
+    <input id="definition_name" name="definition_name" class="form-control" type="text">
   </div>
-  <button type="submit" class="btn btn-success">Add definition</button>
+  <input name="_method" type="hidden" value="patch">
+  <button type="submit" class="btn btn-success">Edit definition</button>
 </form>
 
 <form action="/words/<%= @definition.word.id %>/definitions/<%= @definition.id %>" method="post">
@@ -15,12 +18,5 @@
   <button type="submit" class="btn btn-danger">Delete definition</button>
 </form>
 
-<a href="/words/<%= @definition.word.id %>">Back to <%= @definition.word.name %></a>
+<a href="/words/<%= @definition.word.id %>">Back to <%= @definition.word.word_input()%></a>
 
-<form action="/words/<%= @word.id %>/definitions" method="post">
-  <div class="form-group">
-    <label for="word_name">Definition</label>
-    <input id="word_name" name="word_name" class="form-control" type="text">
-  </div>
-  <button type="submit" class="btn btn-success">Add definition</button>
-</form>

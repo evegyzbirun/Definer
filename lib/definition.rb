@@ -12,7 +12,7 @@ class Definition
   end
 
   def==(definitioin_to_compare)
-    (self.name() == definitioin_to_compare.name()) && (self.word_input_id() == definitioin_to_compare.word_input_id())
+    (self.name() == definitioin_to_compare.name()) && (self.word_input_id() == definitioin_to_compare.name())
   end
 
   def self.all
