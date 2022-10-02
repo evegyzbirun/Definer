@@ -1,0 +1,27 @@
+<h2>Word Input: <%= @word.name %></h2>
+
+<h3>Word Definitions</h3>
+
+  <% if @word.difinitions.any? %>
+    <ul>
+      <% @word.difinitions.each do |song| %>
+        <li><a href="/words/<%= @word.id %>/words/<%= difinition.id %>"><%= difinition.name %></a></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>There are no definitions listed for this wordyet.</p>
+  <% end %>
+
+<h4>Add a difinition:</h4>
+
+<form action="/words/<%= @word.id %>/definitions" method="post">
+  <div class="form-group">
+    <label for="word_name">Song name</label>
+    <input id="word_name" name="word_name" class="form-control" type="text">
+  </div>
+  <button type="submit" class="btn btn-success">Add difinition</button>
+</form>
+
+
+<p><a href="/words/<%= @word.id %>/edit">Edit album</a></p>
+<p><a href="/words">Return to album list</a></p>

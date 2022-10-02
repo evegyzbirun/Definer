@@ -80,8 +80,7 @@ describe('.find_by_word') do
       definition1.save()
       definition2 = Definition.new("color of sky", @word.id, nil)
       definition2.save()
-
-      expect(Definition.find_by_word(word1.id)).to(eq([definition1]))
+    expect(Definition.find_by_word(word1.id)).to(eq([definition1]))
   end
 end
 

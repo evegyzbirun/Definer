@@ -1,0 +1,12 @@
+<h3>List of words</h3>
+
+<% if @words.any? %>
+  <ul>
+    <% @words.each do |word| %>
+      <li><a href="/words/<%= word.id %>"><%= word.word_input %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p> there is no words to show </p>
+<% end %>
+<a href="/words/new">Add a new word</a>
