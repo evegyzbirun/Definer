@@ -23,3 +23,14 @@ describe('create a definition path', {:type => :feature}) do
     expect(page).to have_content('sun in the moring')
   end
 end
+
+describe('update a word', {:type => :feature}) do
+  it('creates a song and then goes to the album page') do
+    word = Word.new("Green", nil)
+    word.save
+    visit("/words/#{word.id}/edit")
+    fill_in('word_name', :with => 'Blue')
+    click_on('Update')
+    expect(page).to have_content('Blue')
+  end
+end
