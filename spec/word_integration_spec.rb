@@ -65,7 +65,7 @@ describe('delete definition', {:type => :feature}) do
     definition = Definition.new("color of sky", word.id, nil)
     definition.save
     visit("/words/#{word.id}/definitions/#{definition.id}")
-    click_on('Delete definitin')
+    click_on('Delete definition')
     expect(page).to have_content('')
   end
 end
