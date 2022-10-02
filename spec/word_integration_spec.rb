@@ -14,7 +14,7 @@
 end
 
 describe('create a definition path', {:type => :feature}) do
-  it('creates a song and then goes to the album page') do
+  it('creates a definition and then goes to the definition page') do
     word = Word.new("Yellow", nil)
     word.save
     visit("/words/#{word.id}")
@@ -25,12 +25,25 @@ describe('create a definition path', {:type => :feature}) do
 end
 
 describe('update a word', {:type => :feature}) do
-  it('creates a song and then goes to the album page') do
+  it('updates a word and then goes to the word page') do
     word = Word.new("Green", nil)
     word.save
     visit("/words/#{word.id}/edit")
     fill_in('word_name', :with => 'Blue')
     click_on('Update')
     expect(page).to have_content('Blue')
+  end
+end
+
+describe('update a definition', {:type => :feature}) do
+  it('updates a definition and then goes to the definition page') do
+    word = Word.new("Blue", nil)
+    word.save
+    definition = Definition.new("color of sky", word.id, nil)
+    definition.save
+    visit("/words/#{word.id}/definitions/#{definition.id}")
+    fill_in('definition_name', :with => 'color of water')
+    click_on('Edit definition')
+    expect(page).to have_content('color of water')
   end
 end
