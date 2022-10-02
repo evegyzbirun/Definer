@@ -3,16 +3,16 @@ class Definition
   attr_accessor :name, :word_input_id
 
   @@definitions = {}
-  @@total_rows = 0
+  @@total_def = 0
 
   def initialize(name, word_input_id, id)
     @name = name
     @word_input_id = word_input_id
-    @id = id || @@total_rows += 1
+    @id = id || @@total_def += 1
   end
 
-  def==(definitioin_to_compare)
-    (self.name() == definitioin_to_compare.name()) && (self.word_input_id() == definitioin_to_compare.name())
+  def ==(compare)
+    self.name() == compare.name() && self.word_input_id() == compare.word_input_id()
   end
 
   def self.all
