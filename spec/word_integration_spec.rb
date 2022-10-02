@@ -57,3 +57,15 @@ describe('delete word', {:type => :feature}) do
     expect(page).to have_content('')
   end
 end
+
+describe('delete definition', {:type => :feature}) do
+  it('deletes a word and then goes to the word page') do
+    word = Word.new("Blue", nil)
+    word.save
+    definition = Definition.new("color of sky", word.id, nil)
+    definition.save
+    visit("/words/#{word.id}/definitions/#{definition.id}")
+    click_on('Delete definitin')
+    expect(page).to have_content('')
+  end
+end
