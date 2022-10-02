@@ -70,6 +70,16 @@ describe('delete definition', {:type => :feature}) do
   end
 end
 
+describe('go back to the word list from the word page', {:type => :feature}) do
+  it('goes back to the word page') do
+    word = Word.new("Blue", nil)
+    word.save
+    visit("/words/#{word.id}")
+    click_on('Return to word list')
+    expect(page).to have_content('Blue')
+  end
+end
+
 describe('go back to the word from a definition page', {:type => :feature}) do
   it('goes back to the word page') do
     word = Word.new("Blue", nil)
