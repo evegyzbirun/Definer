@@ -47,3 +47,13 @@ describe('update a definition', {:type => :feature}) do
     expect(page).to have_content('color of water')
   end
 end
+
+describe('delete word', {:type => :feature}) do
+  it('deletes a word and then goes to the word page') do
+    word = Word.new("Blue", nil)
+    word.save
+    visit("/words/#{word.id}/edit")
+    click_on('Delete word')
+    expect(page).to have_content('')
+  end
+end
